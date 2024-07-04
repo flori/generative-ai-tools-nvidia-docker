@@ -1,4 +1,4 @@
-FROM nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu22.04 as python3.10-base
+FROM nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu22.04 AS python3.10-base
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -10,7 +10,7 @@ RUN apt install -y python3.10-dev python3.10-tk python3-html5lib python3-apt pyt
 RUN apt install -y python-is-python3
 RUN apt install -y pip
 
-FROM python3.10-base as automatic1111vo
+FROM python3.10-base AS automatic1111vo
 
 ARG AUTOMATIC1111_VERSION=v1.6.1
 

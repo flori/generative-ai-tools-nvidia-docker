@@ -1,9 +1,7 @@
-version: '3.8'
-
 services:
   facefusion.v2:
     container_name: facefusion-nvidia-docker
-    image: piotrraszkowski/facefusion-nvidia-docker:latest
+    image: flori/facefusion-nvidia-docker:latest
     restart: always
     build:
       context: .
@@ -13,11 +11,12 @@ services:
       - "7862:7860"
     volumes:
       - facefusion_v2_data:/home/appuser/facefusion
-    mem_reservation: "256M"
-    mem_limit: "8G"
     deploy:
       resources:
+        limits:
+          memory: "8G"
         reservations:
+          memory: "256m"
           devices:
             - driver: nvidia
               device_ids: ['0']

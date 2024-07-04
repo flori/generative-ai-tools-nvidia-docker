@@ -1,9 +1,7 @@
-version: '3.8'
-
 services:
   automatic1111.v1.6:
     container_name: automatic1111-nvidia-docker
-    image: piotrraszkowski/automatic1111-nvidia-docker:latest
+    image: flori/automatic1111-nvidia-docker:latest
     restart: always
     build:
       context: .
@@ -18,11 +16,12 @@ services:
       - IS_MEDVRAM=true
     volumes:
       - automatic1111_data:/home/appuser/stable-diffusion-webui
-    mem_reservation: "256M"
-    mem_limit: "16G"
     deploy:
       resources:
+        limits:
+          memory: "16G"
         reservations:
+          memory: "256m"
           devices:
             - driver: nvidia
               capabilities: [ gpu ]
